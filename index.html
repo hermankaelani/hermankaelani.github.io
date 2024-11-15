@@ -171,24 +171,293 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <form name="herman-contact-form">
-              <div class="mb-3">
-                <label for="name" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" required/>
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" required/>
-              </div>
-              <div class="mb-3">
-                <label for="pesan" class="form-label">Pesan</label>
-                <textarea class="form-control" id="pesan" rows="3" name="pesan" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+             <div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1><?= $title; ?></h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="<?= base_url($this->uri->slash_segment(1, 'both')) ?>daftar" class="btn btn-success btn-flat btn-xxs pull-right btn_add_mrs"><i class="fa fa-plus"></i> Lama</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="card card-outline card-success">
+				<div class="card-header">
+					<h3 class="card-title">Form <?= $title; ?></h3>
+				</div>
+				<!-- /.card-header -->
+				<form class="formtambahbaru" action="<?= base_url('daftar/daftar/') ?>simpanbaru">
+					<div class="card-body">
+						<div class="pesan" style="display: none;"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<!-- form1 -->
+								<div class="form-group sr-only">
+									<select type="select" name="admin" id="admin" class="form-control sr-only">
+										<?php foreach ($tarif as $r) { ?>
+											<option value="<?= $r['harga']; ?>">AD01</option>
+										<?php } ?>
+									</select>
+									<!-- <select name="bhp" id="bhp" class="form-control sr-only">
+										<?php foreach ($bhp as $r) { ?>
+											<option value="<?= $r['harga_jual']; ?>">BHP001</option>
+										<?php } ?>
+									</select> -->
+									<select name="fasilitas" id="fasilitas" class="form-control sr-only">
+										<?php foreach ($fasilitas as $r) { ?>
+											<option value="<?= $r['harga']; ?>">FS001</option>
+										<?php } ?>
+									</select>
+								</div>
+								<!-- form 2 -->
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">No RM</label>
+									<div class="col-sm-5">
+										<div class="input-group">
+											<input type="hidden" name="id_pasien" id="id_pasien">
+											<input type="text" name="no_rm" id="no_rm" class="form-control" readonly>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="nama_pasien" class="col-sm-3 control-label">Nama</label>
+									<div class="col-sm-9">
+										<input type="text" name="nama_pasien" id="nama_pasien" class="form-control input-xxs nama" autofocus autocomplete="off" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Tgl. Lahir</label>
+									<div class=" col-sm-9 input-group date" id="tgl" data-target-input="nearest">
+										<input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control datetimepicker-input" data-target="#tgl" autocomplete="off" placeholder="dd/mm/yy" />
+										<div class="input-group-append" data-target="#tgl" data-toggle="datetimepicker">
+											<div class="input-group-text"><i class="fa fa-calendar"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Jenis Kelamin</label>
+									<div class="col-sm-9">
+										<select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2bs4 paul  ">
+											<option value="">- pilih -</option>
+											<option value="Laki-Laki">Laki-Laki</option>
+											<option value="Perempuan">Perempuan</option>
+										</select>
+										<small class="form-text text-danger"><?= form_error('jenis_kelamin'); ?></small>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">No. Telp</label>
+									<div class="col-sm-9">
+										<input type="number" name="no_telp" class="form-control" id="no_telp">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Alamat</label>
+									<div class="col-sm-9">
+										<textarea class="form-control input-xxs alamat" name="alamat" id="alamat" rows='2'></textarea>
+									</div>
+								</div>
+								<!-- penutup -->
+							</div>
+							<div class="col-md-6">
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Tgl Kunjungan</label>
+									<div class="col-sm-9">
+										<input type="date" value="<?= date('Y-m-d') ?>" name="date" id="date" class="form-control" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">No. Transaksi</label>
+									<div class="col-sm-9">
+										<input type="text" value="<?= date('Ymd-') ?>" name="no_transaksi" id="no_transaksi" class="form-control" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Jenis Pasien</label>
+									<div class="col-sm-9">
+										<input type="text" value="Baru" name="jenis_pasien" id="jenis_pasien" class="form-control " readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Penjamin</label>
+									<div class="col-sm-5">
+										<div class="input-group">
+											<input type="hidden" name="kode_penjamin" id="kode_penjamin">
+											<input type="text" name="nama_penjamin" id="nama_penjamin" class="form-control" autocomplete="off">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#modal-penjamin">
+													<i class="fa fa-search"></i>
+												</button>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Dokter</label>
+									<div class="col-sm-9">
+										<select name="dokter" id="dokter" class="form-control paul select2bs4">
+											<option value="">- Pilih Dokter -</option>
+											<?php foreach ($dokter as $r) { ?>
+												<option value="<?= $r['id_dokter']; ?>"><?= $r['nama_dokter']; ?></option>
+											<?php } ?>
+										</select>
+										<small class="form-text text-danger"><?= form_error('dokter'); ?></small>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 control-label">Alergi</label>
+									<div class="col-sm-9">
+										<textarea class="form-control input-xxs alergi" name="alergi" id="alergi" rows='2'></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.card-body -->
+						<div class="card-footer" style="background: transparent;">
+							<button type="reset" class="btn btn-danger btn-xxs float-left tombolbatal" onclick="return $('.paul'). val(null).trigger('change')" style=" margin-right: 15px;"><i class="fa fa-undo"></i> Batal</button>
+							<button type="submit" class="btn btn-success btn-xxs float-right tombolsimpan"><i class="fa fa-save"></i> Simpan Data</button>
+						</div>
+					</div>
+					<!-- /.card-footer -->
+				</form>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+	</section>
+</div>
 
-              <button class="btn btn-primary btn-loading d-none" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </button>
+
+
+<!-- modal Jaminan -->
+<div class="modal fade" id="modal-penjamin">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">elect Penjamin</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body table-responsive p-1">
+				<table class="table table-bordered table-striped display responsive nowrap" style="width:100%" id="tablepenjamin">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Kode Penjamin</th>
+							<th>Nama Penjamin</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $no = 1;
+						foreach ($penjamin as  $data) { ?>
+							<tr>
+								<td class="text-center"><?= $no; ?></td>
+								<td><?= $data['kode_penjamin']; ?></td>
+								<td><?= $data['nama_penjamin']; ?></td>
+								<td>
+									<button class="btn btn-sm btn-info" id="selectpenjamin" data-id="<?= $data['id'] ?>" data-kode_penjamin="<?= $data['kode_penjamin'] ?>" data-nama_penjamin="<?= $data['nama_penjamin'] ?>">
+										<i class="fa fa-check"></i>pilih
+									</button>
+								</td>
+							</tr>
+						<?php $no++;
+						} ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- tgl Lahir -->
+<script>
+	$(document).ready(function() {
+		$("#tgl").datetimepicker({
+			format: "DD-MM-YYYY",
+			autoclose: true
+		});
+	}).attr('autocomplete', 'off');
+</script>
+
+<script>
+	$(document).ready(function(e) {
+		$('.formtambahbaru').submit(function(e) {
+			$.ajax({
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				type: 'post',
+				dataType: 'json',
+				cache: false,
+				beforeSend: function() {
+					$('.tombolsimpan').attr('disabled', 'disabled');
+					$('.tombolsimpan').html('<i class="fa fa-spin fa-spinner"></i> Sedang Proses');
+
+				},
+				complete: function() {
+					$('.tombolsimpan').removeAttr('disabled');
+					$('.tombolsimpan').html('<i class="fa fa-save"></i> Simpan Data');
+				},
+
+				error: function(e) {
+					swal('Error', e, 'error');
+				},
+				success: function(data) {
+					if (data.validasi) {
+						$('.pesan').fadeIn();
+						$('.pesan').html(data.validasi);
+					}
+					if (data.sukses) {
+						swal({
+								title: "Simpan Data",
+								text: data.sukses,
+								type: "success",
+								showCancelButton: false,
+								closeOnConfirm: false,
+								showLoaderOnConfirm: true,
+							},
+							function() {
+								window.location = "<?= base_url('kunjungan/kunjungan/today') ?>"
+
+							});
+					}
+				}
+
+			})
+			return false;
+		})
+		// $('.select2bs4').select2({
+		// 	theme: 'bootstrap4'
+		// })
+		$('.select2bs4').select2()
+
+	})
+</script>
+<script>
+	$(document).ready(function() {
+		$('#tablepenjamin').DataTable()
+		$(document).on('click', '#selectpenjamin', function() {
+			var id = $(this).data('id');
+			var kode_penjamin = $(this).data('kode_penjamin');
+			var nama_penjamin = $(this).data('nama_penjamin');
+			$('#id_penjamin').val(id);
+			$('#kode_penjamin').val(kode_penjamin);
+			$('#nama_penjamin').val(nama_penjamin);
+			$('#modal-penjamin').modal('hide')
+		});
+	});
+</script>
             </form>
           </div>
         </div>
