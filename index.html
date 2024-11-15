@@ -166,34 +166,14 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
-              <strong>Terimakasih!</strong> Pesan anda sudah kami terima.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <form name="herman-contact-form">
              <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
-	<section class="content-header">
-		<div class="container-fluid">
-			<div class="row mb-2">
-				<div class="col-sm-6">
-					<h1><?= $title; ?></h1>
-				</div>
-				<div class="col-sm-6">
-					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item">
-							<a href="<?= base_url($this->uri->slash_segment(1, 'both')) ?>daftar" class="btn btn-success btn-flat btn-xxs pull-right btn_add_mrs"><i class="fa fa-plus"></i> Lama</a>
-						</li>
-					</ol>
-				</div>
-			</div>
-		</div><!-- /.container-fluid -->
-	</section>
 	<section class="content">
 		<div class="container-fluid">
 			<div class="card card-outline card-success">
 				<div class="card-header">
-					<h3 class="card-title">Form <?= $title; ?></h3>
+					<h3 class="card-title">Form Pendaftaran Pasien Baru</h3>
 				</div>
 				<!-- /.card-header -->
 				<form class="formtambahbaru" action="<?= base_url('daftar/daftar/') ?>simpanbaru">
@@ -202,23 +182,6 @@
 						<div class="row">
 							<div class="col-md-6">
 								<!-- form1 -->
-								<div class="form-group sr-only">
-									<select type="select" name="admin" id="admin" class="form-control sr-only">
-										<?php foreach ($tarif as $r) { ?>
-											<option value="<?= $r['harga']; ?>">AD01</option>
-										<?php } ?>
-									</select>
-									<!-- <select name="bhp" id="bhp" class="form-control sr-only">
-										<?php foreach ($bhp as $r) { ?>
-											<option value="<?= $r['harga_jual']; ?>">BHP001</option>
-										<?php } ?>
-									</select> -->
-									<select name="fasilitas" id="fasilitas" class="form-control sr-only">
-										<?php foreach ($fasilitas as $r) { ?>
-											<option value="<?= $r['harga']; ?>">FS001</option>
-										<?php } ?>
-									</select>
-								</div>
 								<!-- form 2 -->
 								<div class="form-group row">
 									<label class="col-sm-3 control-label">No RM</label>
