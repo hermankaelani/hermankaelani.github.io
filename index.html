@@ -188,123 +188,166 @@
 					<h3 class="card-title">Form Pendaftaran Pasien Baru</h3>
 				</div>
 				<!-- /.card-header -->
-				<form class="formtambahbaru" action="<?= base_url('daftar/daftar/') ?>simpanbaru">
-					<div class="card-body">
-						<div class="pesan" style="display: none;"></div>
-						<div class="row">
-							<div class="col-md-6">
-								<!-- form1 -->
-								<!-- form 2 -->
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">No RM</label>
-									<div class="col-sm-5">
-										<div class="input-group">
-											<input type="hidden" name="id_pasien" id="id_pasien">
-											<input type="text" name="no_rm" id="no_rm" class="form-control" readonly>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="nama_pasien" class="col-sm-3 control-label">Nama</label>
-									<div class="col-sm-9">
-										<input type="text" name="nama_pasien" id="nama_pasien" class="form-control input-xxs nama" autofocus autocomplete="off" />
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Tgl. Lahir</label>
-									<div class=" col-sm-9 input-group date" id="tgl" data-target-input="nearest">
-										<input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control datetimepicker-input" data-target="#tgl" autocomplete="off" placeholder="dd/mm/yy" />
-										<div class="input-group-append" data-target="#tgl" data-toggle="datetimepicker">
-											<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Jenis Kelamin</label>
-									<div class="col-sm-9">
-										<select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2bs4 paul  ">
-											<option value="">- pilih -</option>
-											<option value="Laki-Laki">Laki-Laki</option>
-											<option value="Perempuan">Perempuan</option>
-										</select>
-										<small class="form-text text-danger"><?= form_error('jenis_kelamin'); ?></small>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">No. Telp</label>
-									<div class="col-sm-9">
-										<input type="number" name="no_telp" class="form-control" id="no_telp">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Alamat</label>
-									<div class="col-sm-9">
-										<textarea class="form-control input-xxs alamat" name="alamat" id="alamat" rows='2'></textarea>
-									</div>
-								</div>
-								<!-- penutup -->
-							</div>
-							<div class="col-md-6">
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Tgl Kunjungan</label>
-									<div class="col-sm-9">
-										<input type="date" value="<?= date('Y-m-d') ?>" name="date" id="date" class="form-control" readonly>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">No. Transaksi</label>
-									<div class="col-sm-9">
-										<input type="text" value="<?= date('Ymd-') ?>" name="no_transaksi" id="no_transaksi" class="form-control" readonly>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Jenis Pasien</label>
-									<div class="col-sm-9">
-										<input type="text" value="Baru" name="jenis_pasien" id="jenis_pasien" class="form-control " readonly>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Penjamin</label>
-									<div class="col-sm-5">
-										<div class="input-group">
-											<input type="hidden" name="kode_penjamin" id="kode_penjamin">
-											<input type="text" name="nama_penjamin" id="nama_penjamin" class="form-control" autocomplete="off">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#modal-penjamin">
-													<i class="fa fa-search"></i>
-												</button>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Dokter</label>
-									<div class="col-sm-9">
-										<select name="dokter" id="dokter" class="form-control paul select2bs4">
-											<option value="">- Pilih Dokter -</option>
-											<?php foreach ($dokter as $r) { ?>
-												<option value="<?= $r['id_dokter']; ?>"><?= $r['nama_dokter']; ?></option>
-											<?php } ?>
-										</select>
-										<small class="form-text text-danger"><?= form_error('dokter'); ?></small>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-sm-3 control-label">Alergi</label>
-									<div class="col-sm-9">
-										<textarea class="form-control input-xxs alergi" name="alergi" id="alergi" rows='2'></textarea>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /.card-body -->
-						<div class="card-footer" style="background: transparent;">
-							<button type="reset" class="btn btn-danger btn-xxs float-left tombolbatal" onclick="return $('.paul'). val(null).trigger('change')" style=" margin-right: 15px;"><i class="fa fa-undo"></i> Batal</button>
-							<button type="submit" class="btn btn-success btn-xxs float-right tombolsimpan"><i class="fa fa-save"></i> Simpan Data</button>
-						</div>
-					</div>
-					<!-- /.card-footer -->
-				</form>
+				<form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Username</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+              <div class="invalid-feedback">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-select" id="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="same-address">
+            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="save-info">
+            <label class="form-check-label" for="save-info">Save this information for next time</label>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">Credit card</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">Debit card</label>
+            </div>
+            <div class="form-check">
+              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">Credit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">Expiration</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+        </form>
 				<!-- /.card-body -->
 			</div>
 			<!-- /.card -->
